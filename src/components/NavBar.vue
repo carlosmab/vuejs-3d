@@ -33,8 +33,6 @@ const handleOptionClick = (option: string) => optionsCallbacks[option]();
 
 <style scoped>
 .left-panel {
-  width: 200px;
-  height: 100vh;
   background-color: #f1f1f1;
   display: flex;
   justify-content: center;

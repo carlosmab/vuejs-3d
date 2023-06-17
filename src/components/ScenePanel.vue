@@ -9,9 +9,13 @@ const canvasRef = ref(null);
 onMounted(() => {
   const canvas = canvasRef.value;
   const canvasObject = new CanvasObject(canvas!);
-  const cube = new Cube(2, 0x00ff00);
+  const cube = new Cube(1, 0x00ff00);
+  const cube2 = new Cube(1, 0xff0000);
+  cube.position.set(-1.5, 0, 0);
+  cube2.position.set(1.5, 0, 0);
 
   canvasObject.addObject(cube);
+  canvasObject.addObject(cube2);
   store.startAnimation = () => canvasObject.startAnimation();
   store.pauseAnimation = () => canvasObject.pauseAnimation();
   store.resumeAnimation = () => canvasObject.resumeAnimation();
@@ -26,14 +30,6 @@ onMounted(() => {
 
 <style scoped>
 .scene-panel {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-canvas {
-  width: 100%;
-  height: 100%;
-}
 </style>

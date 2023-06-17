@@ -20,6 +20,13 @@ export class CanvasObject {
     this.renderer = new THREE.WebGLRenderer({ canvas });
     this.camera.position.z = 5;
 
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+    this.scene.add(ambientLight);
+
+    const directionalLight = new THREE.DirectionalLight(0xffff00, 1);
+    directionalLight.position.set(1, 1, 1);
+    this.scene.add(directionalLight);
+
     window.addEventListener('resize', this.handleWindowResize);
     this.handleWindowResize();
   };
@@ -79,11 +86,14 @@ export class CanvasObject {
   }
 
   private handleWindowResize = () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    this.camera.aspect = this.getAspectRatio();
-    this.camera.updateProjectionMatrix();
-    this.renderer.setSize(width, height);
+    const parentElement = this.canvas.parentElement;
+    if (parentElement) {
+      const parentWidth = parentElement.clientWidth;
+      const parentHeight = parentElement.clientHeight;
+      this.renderer.setSize(parentWidth, parentHeight);
+      this.camera.aspect = parentWidth / parentHeight;
+      this.camera.updateProjectionMatrix();
+    }
   }
 
   private getAspectRatio(): number {
