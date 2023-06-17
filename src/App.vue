@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import NavBar from './components/NavBar.vue'
 import ScenePanel from './components/ScenePanel.vue'
+
 </script>
 
 <template>

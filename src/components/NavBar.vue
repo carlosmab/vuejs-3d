@@ -1,30 +1,21 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { CallbackHash } from '../interfaces';
+import { store } from '../store';
 
-const options = ref(['start', 'pause', 'restart']);
+const options = ref(['start', 'pause', 'resume']);
 
-const start = () => {
-  console.log('start');
-}
-
-const pause = () => {
-  console.log('pause');
-}
-
-const restart = () => {
-  console.log('restart');
-}
+const start = () => store.startAnimation!();
+const pause = () => store.pauseAnimation!();
+const resume = () => store.resumeAnimation!()
 
 const optionsCallbacks: CallbackHash = {
   "start": start,
   "pause": pause,
-  "restart": restart,
+  "resume": resume,
 }
 
-const handleOptionClick = (option: string) => {
-  optionsCallbacks[option]();
-}
+const handleOptionClick = (option: string) => optionsCallbacks[option]();
 
 </script>
 

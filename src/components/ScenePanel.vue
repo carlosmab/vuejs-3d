@@ -2,6 +2,7 @@
 import { ref, onMounted } from 'vue';
 import { CanvasObject } from '../3d/canvas';
 import { Cube } from '../3d/objects/cube';
+import { store } from '../store';
 
 const canvasRef = ref(null);
 
@@ -11,8 +12,9 @@ onMounted(() => {
   const cube = new Cube(2, 0x00ff00);
 
   canvasObject.addObject(cube);
-  canvasObject.animate();
-
+  store.startAnimation = () => canvasObject.startAnimation();
+  store.pauseAnimation = () => canvasObject.pauseAnimation();
+  store.resumeAnimation = () => canvasObject.resumeAnimation();
 })
 </script>
 
