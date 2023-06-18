@@ -2,6 +2,7 @@ import { BoxGeometry, MeshStandardMaterial, Mesh } from "three";
 import { AnimatedObject3D } from "..";
 
 export class Cube extends AnimatedObject3D {
+
   constructor(size: number, color: number) {
     super();
     const geometry = new BoxGeometry(size, size, size);
